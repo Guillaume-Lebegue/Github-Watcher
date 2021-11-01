@@ -1,0 +1,13 @@
+{
+    "port": 3100,
+    "watchedRepos": [
+        {
+            "secret": "test",
+            "repoFullName": "Guillaume-Lebegue/Github-Watcher",
+            "repoUrl": "https://github.com/Guillaume-Lebegue/Github-Watcher",
+            "fullGitRef": "refs/heads/master",
+            "pathLocalRepo": "C:\\Users\\ikkin\\Desktop\\tmp",
+            "buildLine": "echo %cd%"
+        }
+    ]
+}

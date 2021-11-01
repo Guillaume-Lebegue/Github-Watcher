@@ -1,0 +1,33 @@
+{
+  "name": "github-watcher",
+  "version": "1.0.0",
+  "description": "Start a server waiting for github to send an update request",
+  "main": "index.js",
+  "scripts": {
+    "start": "npm run build && node dist/index.js",
+    "build": "npm run build:prod",
+    "build:prod": "set NODE_ENV=production&& tsc",
+    "build:dev": "tsc",
+    "dev": "nodemon",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Guillaume-Lebegue/Github-Watcher.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Guillaume-Lebegue/Github-Watcher/issues"
+  },
+  "homepage": "https://github.com/Guillaume-Lebegue/Github-Watcher#readme",
+  "devDependencies": {
+    "@types/express": "^4.17.13",
+    "nodemon": "^2.0.14",
+    "ts-node": "^10.4.0",
+    "typescript": "^4.4.4"
+  },
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
