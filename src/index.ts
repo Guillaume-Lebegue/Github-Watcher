@@ -4,7 +4,11 @@ import config from './config';
 import receivedPost from './receivedPost';
 
 const app = express();
-app.use(express.json());
+app.use(express.json({ verify: (req, _, buf, encoding) => {
+    if (buf && buf.length) {
+      req.rawBody = buf.toString(encoding as BufferEncoding || 'utf8');
+    }
+  },}));
 
 app.post('/', receivedPost);
 

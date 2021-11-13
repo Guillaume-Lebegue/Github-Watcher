@@ -18,7 +18,7 @@ const receivedPost: RequestHandler = async (req, res) => {
     }
 
     const repo = isKnown(payload);
-    checkSecret(repo, req.body, signature);
+    checkSecret(repo, req.rawBody, signature);
     await doUpdate(repo);
     res.send('ok');
   } catch (e)
