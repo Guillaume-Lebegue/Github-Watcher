@@ -7,14 +7,15 @@ export default function (repo: WatchedConfig, body: any, reqSignature: string): 
   const secret = repo.secret;
 
   const hmac = crypto.createHmac('sha256', secret);
-  hmac.update(body.toString());
+  hmac.update(body.toString('utf8'));
 
-  const digest = 'sha256=' + hmac.digest('hex');
+  const digest = Buffer.from('sha256=' + hmac.digest('hex'), 'utf8');
+  const signature = Buffer.from(reqSignature, 'utf8');
 
-  if (digest !== reqSignature) {
-    console.log('checkSecret: digest !== reqSignature');
+  if (digest.length !== signature.length || !crypto.timingSafeEqual(digest, signature)) {
+    console.log('checkSecret: digest !== signature');
     console.log('digest: ' + digest);
-    console.log('reqSignature: ' + reqSignature);
+    console.log('Signat: ' + signature);
     throw new AppError(`Webhook secret does not match.`, 401);
   }
 }
