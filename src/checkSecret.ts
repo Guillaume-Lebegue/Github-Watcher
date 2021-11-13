@@ -12,6 +12,9 @@ export default function (repo: WatchedConfig, body: any, reqSignature: string): 
   const digest = 'sha256=' + hmac.digest('hex');
 
   if (digest !== reqSignature) {
+    console.log('checkSecret: digest !== reqSignature');
+    console.log('digest: ' + digest);
+    console.log('reqSignature: ' + reqSignature);
     throw new AppError(`Webhook secret does not match.`, 401);
   }
 }
