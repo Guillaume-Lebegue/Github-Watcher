@@ -5,7 +5,7 @@ import AppError from './appError';
 import { WatchedConfig } from "./config";
 
 export default async function (repo: WatchedConfig): Promise<void> {
-  const { repoFullName, fullGitRef, pathLocalRepo, buildLine } = repo;
+  const { repoFullName, pathLocalRepo, buildLine } = repo;
   const execPromise = promisify(exec);
 
   // Update the repo
