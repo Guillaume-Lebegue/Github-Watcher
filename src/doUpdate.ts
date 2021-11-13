@@ -11,7 +11,7 @@ export default async function (repo: WatchedConfig): Promise<void> {
   // Update the repo
   console.log(`Updating repo: ${repoFullName}`);
   try {
-    const updateLog = await execPromise(`cd ${pathLocalRepo} && git fetch && git reset --hard ${fullGitRef}`);
+    const updateLog = await execPromise(`cd ${pathLocalRepo} && git fetch && git pull`);
     console.log(updateLog.stdout);
     if (updateLog.stderr) {
       console.error(updateLog.stderr);
