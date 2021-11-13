@@ -25,7 +25,7 @@ const receivedPost: RequestHandler = async (req, res) => {
   {
     if (e instanceof AppError) {
       res.status(e.status).send(e.message);
-      console.error(e);
+      console.error(e.status + ' ' + e.message);
     } else {
       console.log('not catched error: ', e);
       res.status(500).send('Internal server error');

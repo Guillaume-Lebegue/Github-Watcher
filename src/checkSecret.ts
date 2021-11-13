@@ -13,9 +13,6 @@ export default function (repo: WatchedConfig, body: any, reqSignature: string): 
   const signature = Buffer.from(reqSignature, 'utf8');
 
   if (digest.length !== signature.length || !crypto.timingSafeEqual(digest, signature)) {
-    console.log('checkSecret: digest !== signature');
-    console.log('digest: ' + digest);
-    console.log('Signat: ' + signature);
     throw new AppError(`Webhook secret does not match.`, 401);
   }
 }
