@@ -4,11 +4,12 @@ import config from './config';
 import receivedPost from './receivedPost';
 
 const app = express();
-app.use(express.json({ verify: (req, _, buf, encoding) => {
+app.use(express.json({ limit: '26mb', verify: (req, _, buf, encoding) => {
     if (buf && buf.length) {
       req.rawBody = buf.toString(encoding as BufferEncoding || 'utf8');
     }
   },}));
+app.use(express.urlencoded({limit: '26mb'}));
 
 app.post('/', receivedPost);
 
