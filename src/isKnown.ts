@@ -18,13 +18,12 @@ const isKnown = ( payload: GithuPayload ): WatchedConfig => {
 
   for (const watchedRepo of config.watchedRepos) {
     if ( watchedRepo.repoUrl === payload.repository.url && watchedRepo.repoFullName === payload.repository.full_name ) {
-      if (watchedRepo.fullGitRef !== payload.ref)
-        throw new AppError(`Unknown ref: ${payload.ref}`, 400)
+      if (watchedRepo.fullGitRef === payload.ref)
+        return watchedRepo;
 
-      return watchedRepo;
     }
   };
-  throw new AppError(`Unknown repo: ${payload.repository.full_name}`, 404);
+  throw new AppError(`Unknown repo: ${payload.repository.full_name} and ref: ${payload.ref}`, 404);
 };
 
 export default isKnown;
